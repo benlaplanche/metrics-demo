@@ -1,6 +1,7 @@
 ---
 name: redis
 
-dependencies:
+dependencies: []
 
 files:
+- redis/redis-3.0.3.tar.gz
