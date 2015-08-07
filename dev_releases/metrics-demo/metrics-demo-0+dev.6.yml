@@ -1,0 +1,16 @@
+---
+packages:
+- name: redis
+  version: f08273681b69e136394fe07cea7612b617dbff72
+  fingerprint: f08273681b69e136394fe07cea7612b617dbff72
+  sha1: 6c7c1a09059ad87115d965d283e1ff3ef05a7936
+  dependencies: []
+jobs:
+- name: redis
+  version: bb338100f265a2e4e246e6cc10b154b2f21d9ea3
+  fingerprint: bb338100f265a2e4e246e6cc10b154b2f21d9ea3
+  sha1: a135c9368e06196fca1815a3faeeaea2309ee9d0
+commit_hash: 3eec0ba0
+uncommitted_changes: true
+name: metrics-demo
+version: 0+dev.6

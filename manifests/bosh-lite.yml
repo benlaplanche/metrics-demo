@@ -6,6 +6,8 @@ director_uuid: <%= `bosh status --uuid` %>
 releases:
 - name: metrics-demo
   version: latest
+- name: cf
+  version: latest
 
 jobs:
 - name: redis
@@ -16,6 +18,11 @@ jobs:
   templates:
   - name: redis
     release: metrics-demo
+  - name: metron_agent
+    release: cf
+  properties:
+    metron_agent:
+      zone: z1
 
 networks:
 - name: default
@@ -65,3 +72,38 @@ update:
   serial: false
   canary_watch_time: 1000-60000
   update_watch_time: 1000-60000
+
+properties:
+  loggregator:
+    servers:
+      z1: # A list of loggregator servers for every redundancy zone
+      - 10.244.0.146
+    incoming_port: 3456
+    outgoing_port: 8080
+
+  loggregator_endpoint: # The end point sources will connect to
+    shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET  
+    host: 10.244.0.146
+    port: 3456
+
+  metron_agent:
+    deployment: cf-warden
+
+  metron_endpoint:
+    shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
+
+  etcd:
+    machines:
+    - 10.244.0.42
+
+  nats:
+    address: 10.244.0.6
+    debug: false
+    machines:
+    - 10.244.0.6
+    monitor_port: 4221
+    password: nats
+    port: 4222
+    prof_port: 0
+    trace: false
+    user: nats
