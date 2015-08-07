@@ -1,8 +1,8 @@
 ---
 name: redis
 templates:
-	bin/redis_ctl: bin/redis_ctl
-	config/redis.conf.erb: config/redis.conf
+  bin/ctl.sh: bin/redis_ctl
+  config/redis.conf.erb: config/redis.conf
 packages:
 - redis
 properties:

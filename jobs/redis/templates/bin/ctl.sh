@@ -15,8 +15,9 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    cd /var/vcap/packages/redis
-    exec redis-server /var/vcap/jobs/redis/config/redis.conf
+    exec chpst -u vcap:vcap /var/vcap/packages/redis/bin/redis-server \
+    1>> /var/vcap/sys/log/redis/stdout.log \
+    2>> /var/vcap/sys/log/redis/stderr.log
 
     ;;
 
@@ -25,13 +26,6 @@ case $1 in
     kill -9 `cat $PIDFILE`
 
     rm -f $PIDFILE
-
-    ;;
-
-  reload)
-    echo redis reloading...
-    $JOB_DIR/bin/redis_ctl stop
-    $JOB_DIR/bin/redis_ctl start
 
     ;;
 

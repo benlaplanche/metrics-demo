@@ -10,7 +10,7 @@ releases:
 jobs:
 - name: redis
   instances: 1
-  resource_pool: redis
+  resource_pool: metrics-demo
   networks:
   - name: default
   templates:
