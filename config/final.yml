@@ -1,0 +1,6 @@
+---
+blobstore:
+  provider: local
+  options:
+    blobstore_path: /tmp/metrics-demo-blobs
+final_name: metrics_demo_blobstore
