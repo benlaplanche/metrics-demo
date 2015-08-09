@@ -1,0 +1,8 @@
+---
+name: emitter
+
+dependencies:
+- go
+
+files:
+- emitter/**/*.go
