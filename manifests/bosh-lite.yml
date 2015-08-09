@@ -18,6 +18,8 @@ jobs:
   templates:
   - name: redis
     release: metrics-demo
+  - name: emitter
+    release: metrics-demo
   - name: metron_agent
     release: cf
   properties:

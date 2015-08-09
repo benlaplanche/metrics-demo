@@ -1,0 +1,5 @@
+check process emitter
+  with pidfile /var/vcap/sys/run/emitter/pid
+  start program "/var/vcap/jobs/emitter/bin/emitter_ctl start"
+  stop program "/var/vcap/jobs/emitter/bin/emitter_ctl stop"
+  group vcap
