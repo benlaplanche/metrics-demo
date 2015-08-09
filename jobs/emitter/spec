@@ -1,7 +1,8 @@
 ---
 name: emitter
 templates:
-- bin/ctl.sh: bin/emitter_ctl.sh
+  bin/ctl.sh: bin/emitter_ctl.sh
 packages:
 - go
 - emitter
+properties: {}
