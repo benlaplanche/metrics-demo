@@ -1,48 +1,53 @@
 package main
 
 import (
-	"errors"
 	"fmt"
+	"github.com/cloudfoundry/dropsonde"
+	dmetrics "github.com/cloudfoundry/dropsonde/metrics"
 	redis "github.com/garyburd/redigo/redis"
+	"strconv"
 	"strings"
 )
 
 type client struct {
-	host string
-	port int
+	Host string
+	Port int
 
-	connection redis.Conn
+	Connection redis.Conn
 }
 
 type metric struct {
-	name  string
-	value string
-	unit  string
+	Name  string
+	Value float64
+	Unit  string
 }
 
-type metronAgent struct {
+type emitterDetails struct {
+	Destination string
+	Origin      string
+	Zone        string
+	Index       string
 }
 
 type Client interface {
 	Disconnect() error
 	Info() (map[string]string, error)
 	InfoField(fieldName string) (string, error)
-	EmitMetric(m metric, agent metronAgent) error
+	EmitMetric(m *metric) error
 	Address() string
 }
 
 func Connect() (Client, error) {
 	client := &client{
-		host: "127.0.0.1",
-		port: 6379,
+		Host: "127.0.0.1",
+		Port: 6379,
 	}
 
-	address := fmt.Sprintf("%s:%d", client.host, client.port)
+	address := fmt.Sprintf("%s:%d", client.Host, client.Port)
 
 	var err error
-	client.connection, err = redis.Dial("tcp", address)
+	client.Connection, err = redis.Dial("tcp", address)
 	if err != nil {
-		fmt.Errorf("Error connecting to the Redis Server at: %s", address)
 		return nil, err
 	}
 
@@ -50,22 +55,28 @@ func Connect() (Client, error) {
 
 }
 
-func (c *client) EmitMetric(m metric, agent metronAgent) error {
+func (c *client) EmitMetric(m *metric) error {
+
+	err := dmetrics.SendValue(m.Name, m.Value, m.Unit)
+
+	if err != nil {
+		return fmt.Errorf("Error emitting metric %v", m)
+	}
 	return nil
 }
 
 func (c *client) Address() string {
-	return fmt.Sprintf("%s:%d", c.host, c.port)
+	return fmt.Sprintf("%s:%d", c.Host, c.Port)
 }
 
 func (c *client) Disconnect() error {
-	return c.connection.Close()
+	return c.Connection.Close()
 }
 
 func (client *client) Info() (map[string]string, error) {
 	info := map[string]string{}
 
-	response, err := redis.String(client.connection.Do("info"))
+	response, err := redis.String(client.Connection.Do("info"))
 	if err != nil {
 		return nil, err
 	}
@@ -91,7 +102,7 @@ func (client *client) InfoField(fieldName string) (string, error) {
 
 	value, ok := info[fieldName]
 	if !ok {
-		return "", errors.New(fmt.Sprintf("Unknown field: %s", fieldName))
+		return "", fmt.Errorf("Unknown field: %s", fieldName)
 	}
 
 	return value, nil
@@ -99,19 +110,49 @@ func (client *client) InfoField(fieldName string) (string, error) {
 
 func main() {
 	redisConn, err := Connect()
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
 	defer redisConn.Disconnect()
 
+	d := &emitterDetails{
+		Destination: "localhost:3457",
+		Origin:      "metrics-demo",
+		Zone:        "z1",
+		Index:       "0",
+	}
+
+	err = dropsonde.Initialize(d.Destination, d.Origin, d.Zone, d.Index)
 	if err != nil {
-		fmt.Errorf("Error connecting to Redis at %s", redisConn.Address())
+		fmt.Println(err)
 		return
 	}
 
-	field := "uptime_in_seconds"
-	uptime, err := redisConn.InfoField(field)
+	fieldName := "uptime_in_seconds"
+	uptime, err := redisConn.InfoField(fieldName)
 	if err != nil {
-		fmt.Errorf("Error reading field: %s", field)
+		fmt.Println(err)
 		return
 	}
 
-	fmt.Println(uptime)
+	uptimeConverted, err := strconv.ParseFloat(uptime, 64)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	metricData := &metric{
+		Name:  fieldName,
+		Value: uptimeConverted,
+		Unit:  "",
+	}
+
+	err = redisConn.EmitMetric(metricData)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Printf("Successfully emitted %+v", metricData)
 }
