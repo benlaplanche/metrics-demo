@@ -1,6 +1,5 @@
 ---
 blobstore:
-  provider: local
+  provider: s3
   options:
-    blobstore_path: /tmp/metrics-demo-blobs
-final_name: metrics_demo_blobstore
+    bucket_name: metrics-demo-blobs
