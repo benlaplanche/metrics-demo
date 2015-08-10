@@ -16,6 +16,7 @@ case $1 in
     echo $$ > $PIDFILE
 
     while sleep 15
+    do
       exec chpst -u vcap:vcap /var/vcap/packages/emitter/bin/emitter \
       1>> /var/vcap/sys/log/emitter/stdout.log \
       2>> /var/vcap/sys/log/emitter/stderr.log
