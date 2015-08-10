@@ -6,7 +6,7 @@ This demo release will query the `redis info` command to obtain the `uptime_in_s
 
 ## Latest Release
 
-**Version: ** [http://metrics-demo-blobs.s3.amazonaws.com/metrics-demo-2.tgz](http://metrics-demo-blobs.s3.amazonaws.com/metrics-demo-2.tgz)
+**Version:** [http://metrics-demo-blobs.s3.amazonaws.com/metrics-demo-2.tgz](http://metrics-demo-blobs.s3.amazonaws.com/metrics-demo-2.tgz)
 
 Tested with **CF Release 213**
 
@@ -31,7 +31,7 @@ Now you can execute the binary to consume the emitted metrics
 /var/vcap/packages/consumer/bin/metrics-consumer --config=/var/vcap/jobs/consumer/config.json
 ```
 
-You will output similar to this
+You will get output similar to this
 ```
 **Started consuming the firehose**
 origin:"metrics-demo/z1/0" eventType:ValueMetric timestamp:1439218008244245766 deployment:"cf-warden" job:"redis" index:"0" ip:"10.244.0.118" valueMetric:<name:"numCPUS" value:8 unit:"count" >
