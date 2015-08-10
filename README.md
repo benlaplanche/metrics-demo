@@ -6,7 +6,7 @@ This demo release will query the `redis info` command to obtain the `uptime_in_s
 
 ## Deploy to BOSH-Lite
 
-The latest Final Release is located [here]()
+The latest final release is located [here]()
 
 ```
 $ bosh upload release
@@ -50,4 +50,32 @@ Metrics are emitted on a 15second interval.
 
 Default values are set in the `spec` files of the Jobs.
 
-If you need to change 
+If you need to change these values you can override them in your manifest.
+
+The most commonly changed ones would look like this in your manifest
+```
+jobs:
+- name: redis
+  instances: 1
+  resource_pool: metrics-demo
+  networks:
+  - name: default
+  templates:
+  - name: redis
+    release: metrics-demo
+  - name: emitter
+    release: metrics-demo
+  - name: consumer
+    release: metrics-demo
+  - name: metron_agent
+    release: cf
+  properties:
+    metron_agent:
+      zone: z1
+      debug: false
+    consumer:
+      uaa_url: https://uaa.xxx
+      doppler_addr: wss://doppler.xxx:4443
+      username: xxxx
+      password: xxxx
+```
