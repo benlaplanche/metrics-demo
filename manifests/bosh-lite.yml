@@ -20,12 +20,14 @@ jobs:
     release: metrics-demo
   - name: emitter
     release: metrics-demo
+  - name: consumer
+    release: metrics-demo
   - name: metron_agent
     release: cf
   properties:
     metron_agent:
       zone: z1
-      debug: true
+      debug: false
 
 networks:
 - name: default

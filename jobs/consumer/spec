@@ -1,5 +1,27 @@
 ---
 name: consumer
 templates:
-
+  config.json.erb: config.json
 packages:
+properties:
+  consumer.uaa_url
+    description: CF UAA URL, default value is for BOSH Lite
+    default: "https://uaa.10.244.0.34.xip.io"
+  consumer.username
+    description: username of someone with doppler.firehose permissions
+    default: "admin"
+  consumer.password
+    description: password for the above user
+    default: "admin-secret"
+  consumer.doppler_addr
+    description: Doppler Address
+    default: "wss://doppler.10.244.0.34.xip.io:4443"
+  consumer.skip_ssl
+    description: Boolean to skip SSL validation
+    default: true
+  consumer.firehose_subscription_id
+    description: subscription ID to use when consuming the firehose
+    default: "metrics-demo-1a"
+  consumer.origin_id
+    description: Origin ID to filter the firehose on
+    default: "metrics-demo/z1/0"
