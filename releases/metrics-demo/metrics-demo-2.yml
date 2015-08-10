@@ -1,0 +1,41 @@
+---
+packages:
+- name: consumer
+  version: 9551c756a84ffbbb90dd76a154d646e9035f2b32
+  fingerprint: 9551c756a84ffbbb90dd76a154d646e9035f2b32
+  sha1: fc181d286ea62ccfa5bd3141211206756168c25a
+  dependencies:
+  - go
+- name: emitter
+  version: 4cac68c83039b1fb12722943fbf5d17884db37a5
+  fingerprint: 4cac68c83039b1fb12722943fbf5d17884db37a5
+  sha1: 0ef5435c2370737eea6e19ec35c9971b04fbf3b9
+  dependencies:
+  - go
+- name: go
+  version: f04af41e8d784f2cb0ea67a7745dda7a233bc5ac
+  fingerprint: f04af41e8d784f2cb0ea67a7745dda7a233bc5ac
+  sha1: 3e7997d055ee379aa925a13f6dbb3d701cee4ede
+  dependencies: []
+- name: redis
+  version: f08273681b69e136394fe07cea7612b617dbff72
+  fingerprint: f08273681b69e136394fe07cea7612b617dbff72
+  sha1: 454a93957838d8e0ed76cd36569d9f0a8bb9e610
+  dependencies: []
+jobs:
+- name: consumer
+  version: c62c34d798187641bcc0a35e56a6dd961468a04a
+  fingerprint: c62c34d798187641bcc0a35e56a6dd961468a04a
+  sha1: 46a473488fd4dea41790d3752295bf46c397d092
+- name: emitter
+  version: 41697759a43ab5c903090bf0ecde17a12f5311cb
+  fingerprint: 41697759a43ab5c903090bf0ecde17a12f5311cb
+  sha1: 2e1470933a86fd6c76dafd65e5f949a9a975336d
+- name: redis
+  version: bb338100f265a2e4e246e6cc10b154b2f21d9ea3
+  fingerprint: bb338100f265a2e4e246e6cc10b154b2f21d9ea3
+  sha1: 202ca0bbc500905e1f22c7903d8f50d4130c6d69
+commit_hash: b5f4152e
+uncommitted_changes: false
+name: metrics-demo
+version: '2'
