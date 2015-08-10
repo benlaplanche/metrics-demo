@@ -25,6 +25,7 @@ jobs:
   properties:
     metron_agent:
       zone: z1
+      debug: true
 
 networks:
 - name: default
