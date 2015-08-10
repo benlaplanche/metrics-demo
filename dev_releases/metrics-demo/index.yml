@@ -36,4 +36,6 @@ builds:
     version: 0+dev.17
   dffe1d19-44c5-4587-bb78-4328afb51b52:
     version: 0+dev.18
+  60f7c1cf-220c-4f72-bdf2-0dbbdd6a4e91:
+    version: 0+dev.19
 format-version: '2'
