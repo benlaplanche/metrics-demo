@@ -15,13 +15,10 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    for (( ; ; ))
-    do
-      exec chpst -u vcap:vcap /var/vcap/packages/emitter \
+    while sleep 15
+      exec chpst -u vcap:vcap /var/vcap/packages/emitter/bin/emitter \
       1>> /var/vcap/sys/log/emitter/stdout.log \
       2>> /var/vcap/sys/log/emitter/stderr.log
-
-      sleep 60
     done
     ;;
 
