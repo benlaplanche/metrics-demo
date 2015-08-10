@@ -1,5 +1,0 @@
-check process consumer
-  with pidfile /var/vcap/sys/run/consumer/pid
-  start program "/var/vcap/jobs/emitter/bin/consumer_ctl start"
-  stop program "/var/vcap/jobs/emitter/bin/consumer_ctl stop"
-  group vcap
