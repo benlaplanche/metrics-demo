@@ -4,12 +4,16 @@ A BOSH release to demo deploying a single node Redis server with the metron agen
 
 This demo release will query the `redis info` command to obtain the `uptime_in_seconds` value and emit this as a metric. 
 
+## Latest Release
+
+**Version: ** [http://metrics-demo-blobs.s3.amazonaws.com/metrics-demo-2.tgz](http://metrics-demo-blobs.s3.amazonaws.com/metrics-demo-2.tgz)
+
+Tested with **CF Release 213**
+
 ## Deploy to BOSH-Lite
 
-The latest final release is located [here]()
-
 ```
-$ bosh upload release
+$ bosh upload release http://metrics-demo-blobs.s3.amazonaws.com/metrics-demo-2.tgz
 $ bosh deployment manifests/bosh-lite.yml
 $ bosh deploy -n
 ```
