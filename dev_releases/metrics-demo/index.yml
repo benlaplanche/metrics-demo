@@ -26,4 +26,12 @@ builds:
     version: 0+dev.12
   1412b177-dcbf-4111-9141-1b07a7a9b2dd:
     version: 0+dev.13
+  cf981e4f-4ebf-4aa6-9b05-39a28b7d7185:
+    version: 0+dev.14
+  33c6dd86-39f6-4e55-8156-2b782dc92b44:
+    version: 0+dev.15
+  e87a9fec-b0fb-413d-848e-4ae7f3108152:
+    version: 0+dev.16
+  f72e5a13-2fee-4ab0-95ce-4cc15d9d4b0c:
+    version: 0+dev.17
 format-version: '2'
