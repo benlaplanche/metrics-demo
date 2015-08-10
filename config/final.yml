@@ -3,3 +3,4 @@ blobstore:
   provider: s3
   options:
     bucket_name: metrics-demo-blobs
+final_name: metrics-demo
