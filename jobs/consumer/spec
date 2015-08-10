@@ -3,6 +3,8 @@ name: consumer
 templates:
   config.json.erb: config.json
 packages:
+- go
+- consumer
 properties:
   consumer.uaa_url
     description: CF UAA URL, default value is for BOSH Lite

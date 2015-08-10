@@ -2,6 +2,7 @@
 name: consumer
 
 dependencies:
+- go
 
 files:
 - consumer/**/*.go
