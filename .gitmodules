@@ -1,6 +1,3 @@
 [submodule "src/emitter"]
 	path = src/emitter
 	url = git@github.com:/benlaplanche/emitter
-[submodule "src/consumer"]
-	path = src/consumer
-	url = git@github.com:/benlaplanche/metrics-consumer
