@@ -1,1 +1,9 @@
---- {}
+---
+go/go1.4.2.linux-amd64.tar.gz:
+  object_id: f66fbf40-9fbb-482e-8a63-690dedde46f4
+  sha: 5020af94b52b65cc9b6f11d50a67e4bae07b0aff
+  size: 62442704
+redis/redis-3.0.3.tar.gz:
+  object_id: 841d0b4d-fff2-4766-8592-591d03769dc2
+  sha: 0e2d7707327986ae652df717059354b358b83358
+  size: 1360959
