@@ -1,6 +1,6 @@
 # Metrics Demo Release
 
-A BOSH release to demo deploying a single node Redis server with the metron agent located on the same VM, by taking the Metron Agent from tjhe CF Release itself. 
+A BOSH release to demo deploying a single node Redis server with the metron agent located on the same VM, by taking the Metron Agent from the CF Release itself. 
 
 This demo release will query the `redis info` command to obtain the `uptime_in_seconds` value and emit this as a metric. 
 
