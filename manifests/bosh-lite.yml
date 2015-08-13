@@ -79,17 +79,8 @@ update:
   update_watch_time: 1000-60000
 
 properties:
-  loggregator:
-    servers:
-      z1: # A list of loggregator servers for every redundancy zone
-      - 10.244.0.146
-    incoming_port: 3456
-    outgoing_port: 8080
-
-  loggregator_endpoint: # The end point sources will connect to
+  loggregator_endpoint: 
     shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET  
-    host: 10.244.0.146
-    port: 3456
 
   metron_agent:
     deployment: cf-warden
